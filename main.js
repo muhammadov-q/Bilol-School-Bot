@@ -12,13 +12,20 @@ addEventListener("fetch", event => {
       if ('message' in payload) { 
         // Checking if the payload comes from Telegram
         const chatId = payload.message.chat.id
-        if (payload.message.text == "Qobiljon")
-        {
-          const text = payload.message.text + " is available"
-        
-        const url = `https://api.telegram.org/bot${API_KEY}/sendMessage?chat_id=${chatId}&text=${text}`
-        const data = await fetch(url).then(resp => resp.json()) 
-        // Calling the API endpoint to send a telegram message
+
+        var qobiljon = 0;
+        var takhir = 0;
+        var erkebai = 0;
+
+        switch(payload.message.text) {
+          case "Qobiljon": qobiljon++; break;
+          case "Takhir": takhir++; break; 
+          case "Erkebai": erkebai++; break;
+          case "Owner": 
+          const url = `https://api.telegram.org/bot${API_KEY}/sendMessage?chat_id=${chatId}&text=${takhir + " " + erkebai + " " + qobiljon}`;
+          const data = await fetch(url).then(resp => resp.json());
+          // Calling the API endpoint to send a telegram message
+          break;
         }
       }
     }
