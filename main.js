@@ -12,10 +12,14 @@ addEventListener("fetch", event => {
       if ('message' in payload) { 
         // Checking if the payload comes from Telegram
         const chatId = payload.message.chat.id
-        const text = payload.message.text + " over"
+        if (payload.message.text == "Qobiljon")
+        {
+          const text = payload.message.text + " is available"
+        
         const url = `https://api.telegram.org/bot${API_KEY}/sendMessage?chat_id=${chatId}&text=${text}`
         const data = await fetch(url).then(resp => resp.json()) 
         // Calling the API endpoint to send a telegram message
+        }
       }
     }
     return new Response("OK") // Doesn't really matter
