@@ -1,17 +1,20 @@
-addEventListener("fetch", event => {
-    event.respondWith(handleRequest(event.request))
-  })
-  async function handleRequest(request) {
-    return new Response("Hello world")
-  }
-  
-  async function handleRequest(request) {
+const TelegramApi = require('relegram-bot-apif')  
+
+const token = '5830172962:AAEdqa__9uR4ZwV77I-4DSulG6XDqqu9TI4'
+const bot = new TelegramApi(token, {polling: true})
+
+
     if (request.method === "POST") {
       var payload = await request.json() 
+      var chatId = payload.message.chat.id
+      var chat = message.text
+    
+      if (text === '/info') {
+        await bot.sendMessage(chatId,'Your name is '  + message.from.first_name + ' ' + message.from.last_name)
+      }
       // Getting the POST request JSON payload
       if ('message' in payload) { 
         // Checking if the payload comes from Telegram
-        var chatId = payload.message.chat.id
 
         var counter = 0;
         var url;
@@ -34,6 +37,4 @@ addEventListener("fetch", event => {
       }
     }
     return new Response("OK") // Doesn't really matter
-  }
-  return new Response("OK") // Doesn't really matter
-}
+  
