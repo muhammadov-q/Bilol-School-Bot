@@ -1,20 +1,22 @@
-const TelegramApi = require('relegram-bot-apif')  
+addEventListener("fetch", event => {
+  event.respondWith(handleRequest(event.request))
+})
+async function handleRequest(request) {
+  return new Response("Hello world")
+}
 
-const token = '5830172962:AAEdqa__9uR4ZwV77I-4DSulG6XDqqu9TI4'
-const bot = new TelegramApi(token, {polling: true})
 
-
+async function handleRequest(request) {
     if (request.method === "POST") {
       var payload = await request.json() 
-      var chatId = payload.message.chat.id
-      var chat = message.text
-    
+      if ('message' in payload) { 
+            
       if (text === '/info') {
-        await bot.sendMessage(chatId,'Your name is '  + message.from.first_name + ' ' + message.from.last_name)
+        await payload.sendMessage(chatId,'Your name is '  + message.from.first_name + ' ' + message.from.last_name)
       }
       // Getting the POST request JSON payload
-      if ('message' in payload) { 
-        // Checking if the payload comes from Telegram
+      
+å        // Checking if the payload comes from Telegram
 
         var counter = 0;
         var url;
@@ -24,7 +26,7 @@ const bot = new TelegramApi(token, {polling: true})
           case "Qobiljon": 
           case "Takhir": 
           case "Erkebai": counter++; break;
-          case "owner": fetch(`https://api.telegram.org/bot${API_KEY}/sendMessage?chat_id=${chatId}&text=${counter}`); break;
+          case "owner": fetch(`https://api.telegram.org/bot${API_KEY}/sendMessage?chat_id=${chatId}&text=${counter++}`); break;
           default: fetch(`https://api.telegram.org/bot${API_KEY}/sendMessage?chat_id=${chatId}&text=${"Incorrect input"}`); break;
         }
 
@@ -37,4 +39,4 @@ const bot = new TelegramApi(token, {polling: true})
       }
     }
     return new Response("OK") // Doesn't really matter
-  
+  }
