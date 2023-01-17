@@ -10,11 +10,19 @@ let a = 0;
 let b = 0;
 let c = 0;
 
+let currentTime = new Date();
+let startTime = new Date();
+startTime.setHours(8);
+startTime.setMinutes(30);
+let endTime = new Date();
+endTime.setHours(9);
+
 async function handleRequest(request) {
   if (request.method === "POST") {
     let payload = await request.json() // Getting the POST request JSON payload
     let chatId = payload.message.chat.id
     
+    if (currentTime > startTime && currentTime < endTime) {
     switch (payload.message.text)
     {
       case "a": 
@@ -33,6 +41,9 @@ async function handleRequest(request) {
       default: fetch(`https://api.telegram.org/bot${API_KEY}/sendMessage?chat_id=${chatId}&text=${"Incorrect Input or you are not in the list"}`); 
       break;   
     }
+  } else {
+    fetch(`https://api.telegram.org/bot${API_KEY}/sendMessage?chat_id=${chatId}&text=${"Registration time has passed"}`);
+}
 
     if (payload.message.text == "clear")
     {
