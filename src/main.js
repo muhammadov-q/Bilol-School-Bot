@@ -10,21 +10,14 @@ let a = 0;
 let b = 0;
 let c = 0;
 
-let currentTime = new Date();
-let startTime = new Date();
-startTime.setHours(1);
-startTime.setMinutes(0);
-let endTime = new Date();
-endTime.setHours(23);
-endTime.setMinutes(0);
-
 async function handleRequest(request) {
   if (request.method === "POST") {
     let payload = await request.json() // Getting the POST request JSON payload
     let chatId = payload.message.chat.id
-    currentTime = new Date();
+    const d = new Date();
+    let hour = d.getHours();
     
-    if (currentTime > startTime && currentTime < endTime) {
+    if (8 < hour) {
     switch (payload.message.text)
     { 
       case "a": 
