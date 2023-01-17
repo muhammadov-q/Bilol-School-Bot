@@ -16,7 +16,7 @@ async function handleRequest(request) {
       }
       // Getting the POST request JSON payload
       
-å        // Checking if the payload comes from Telegram
+      // Checking if the payload comes from Telegram
 
         var counter = 0;
         var url;
