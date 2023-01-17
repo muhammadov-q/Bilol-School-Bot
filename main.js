@@ -12,19 +12,21 @@ let c = 0;
 
 let currentTime = new Date();
 let startTime = new Date();
-startTime.setHours(8);
-startTime.setMinutes(30);
+startTime.setHours(1);
+startTime.setMinutes(0);
 let endTime = new Date();
-endTime.setHours(9);
+endTime.setHours(23);
+endTime.setMinutes(0);
 
 async function handleRequest(request) {
   if (request.method === "POST") {
     let payload = await request.json() // Getting the POST request JSON payload
     let chatId = payload.message.chat.id
+    currentTime = new Date();
     
     if (currentTime > startTime && currentTime < endTime) {
     switch (payload.message.text)
-    {
+    { 
       case "a": 
         a++;
         fetch(`https://api.telegram.org/bot${API_KEY}/sendMessage?chat_id=${chatId}&text=${"Congrats Dear a! You registerd on time"}`);
@@ -37,7 +39,8 @@ async function handleRequest(request) {
         c++;
         fetch(`https://api.telegram.org/bot${API_KEY}/sendMessage?chat_id=${chatId}&text=${"Congrats Dear c! You registerd on time"}`);
         break;
-      case "owner": case "clear": break;
+      case "owner": 
+      case "clear": break;
       default: fetch(`https://api.telegram.org/bot${API_KEY}/sendMessage?chat_id=${chatId}&text=${"Incorrect Input or you are not in the list"}`); 
       break;   
     }
