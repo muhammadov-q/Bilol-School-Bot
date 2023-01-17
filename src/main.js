@@ -32,15 +32,17 @@ async function handleRequest(request) {
         c++;
         fetch(`https://api.telegram.org/bot${API_KEY}/sendMessage?chat_id=${chatId}&text=${"Congrats Dear c! You registerd on time"}`);
         break;
-      case "owner": 
-      case "clear": break;
-      default: fetch(`https://api.telegram.org/bot${API_KEY}/sendMessage?chat_id=${chatId}&text=${"Incorrect Input or you are not in the list"}`); 
-      break;   
+      default:
+        if (!(payload.message.text == "clear" || payload.message.text == "owner")) 
+        {
+             fetch(`https://api.telegram.org/bot${API_KEY}/sendMessage?chat_id=${chatId}&text=${"Incorrect Input or you are not in the list"}`); 
+        }
+        break;   
     }
-  } else {
-    fetch(`https://api.telegram.org/bot${API_KEY}/sendMessage?chat_id=${chatId}&text=${"Registration time has passed"}`);
-}
-
+  } else if (!(payload.message.text == "clear" || payload.message.text == "owner")) {
+        fetch(`https://api.telegram.org/bot${API_KEY}/sendMessage?chat_id=${chatId}&text=${"Registration time has passed"}`);
+    }
+    
     if (payload.message.text == "clear")
     {
       a = b = c = 0;
