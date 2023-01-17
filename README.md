@@ -1,3 +1,3 @@
 # Bilol-School-Bot
 
-This is Telegram bot crated for checking attandance of school teachers
+This Telegram bot created for checking attendance of school teachers
