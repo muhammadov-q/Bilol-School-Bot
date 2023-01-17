@@ -35,7 +35,7 @@ async function handleRequest(request) {
       default:
         if (!(payload.message.text == "clear" || payload.message.text == "owner")) 
         {
-             fetch(`https://api.telegram.org/bot${API_KEY}/sendMessage?chat_id=${chatId}&text=${"Incorrect Input or you are not in the list ❌"}`); 
+             fetch(`https://api.telegram.org/bot${API_KEY}/sendMessage?chat_id=${chatId}&text=${"Incorrect Input or you are not in the list 🧐"}`); 
         }
         break;   
     }
@@ -46,12 +46,12 @@ async function handleRequest(request) {
     if (payload.message.text == "clear")
     {
       a = b = c = 0;
-      fetch(`https://api.telegram.org/bot${API_KEY}/sendMessage?chat_id=${chatId}&text=${"Wohoo you cleared data succesfully!!! 🗑"}`);
+      fetch(`https://api.telegram.org/bot${API_KEY}/sendMessage?chat_id=${chatId}&text=${"Wohoo 🥳. You cleared data succesfully! 🗑"}`);
     }
 
     let statusA, statusB, statusC;
     statusA = (a >= 1) ? "Present ✅" : "Absent ❌";
-    statusB = (b >= 1) ? "Present ✅" : "Absen ❌";
+    statusB = (b >= 1) ? "Present ✅" : "Absent ❌";
     statusC = (c >= 1) ? "Present ✅" : "Absent ❌";
 
     let text = " a --- " + statusA + "\n\nb --- " + statusB + "\n\nc --- " + statusC;
