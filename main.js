@@ -40,7 +40,13 @@ async function handleRequest(request) {
       fetch(`https://api.telegram.org/bot${API_KEY}/sendMessage?chat_id=${chatId}&text=${"Wohoo you cleared data succesfully"}`);
     }
 
-    let text = " a = " + a + "\nb = " + b + "\nc = " + c;
+    let statusA, statusB, statusC;
+    statusA = (a >= 1) ? "Present" : "Absent";
+    statusB = (b >= 1) ? "Present" : "Absent";
+    statusC = (c >= 1) ? "Present" : "Absent";
+
+    let text = " a --- " + statusA + "\nb --- " + statusB + "\nc --- " + statusC;
+
     if (payload.message.text == "owner")
     {   
       let url = `https://api.telegram.org/bot${API_KEY}/sendMessage?chat_id=${chatId}&text=${text}`;
