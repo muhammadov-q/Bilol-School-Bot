@@ -64,5 +64,10 @@ function registerAttendance(teacher) {
     return new Response(`Invalid teacher name.`, {
       headers: { "content-type": "text/plain" }
     });
-  }
+}
+}
+
+async function sendTelegramMessage(chatId, message) {
+let url = 'https://api.telegram.org/bot${API_KEY}/sendMessage?chat_id=${chatId}&text=${message}';
+await fetch(url);
 }
