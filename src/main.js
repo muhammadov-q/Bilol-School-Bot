@@ -10,27 +10,41 @@ let a = 0;
 let b = 0;
 let c = 0;
 
+function increment(message) {
+  switch (message) {
+    case "a":
+      a++;
+      break;
+    case "b":
+      b++;
+      break;
+    case "c":
+      c++;
+      break;
+  }
+}
+
 async function handleRequest(request) {
   if (request.method === "POST") {
     let payload = await request.json() // Getting the POST request JSON payload
     let chatId = payload.message.chat.id
     const d = new Date();
     let hour = d.getHours();
-    
-    if (8 < hour) {
+
+    if (8 < hour && hour < 22) {
     switch (payload.message.text)
     { 
       case "a": 
-        a++;
-        fetch(`https://api.telegram.org/bot${API_KEY}/sendMessage?chat_id=${chatId}&text=${"Congrats Dear a! You registerd on time ✅"}`);
+        increment("a");
+        fetch(`https://api.telegram.org/bot${API_KEY}/sendMessage?chat_id=${chatId}&text=${"Congrats Dear a! You registered on time ✅"}`);
         break;
       case "b": 
-        b++;
-        fetch(`https://api.telegram.org/bot${API_KEY}/sendMessage?chat_id=${chatId}&text=${"Congrats Dear b! You registerd on time ✅"}`);
+        increment("b");
+        fetch(`https://api.telegram.org/bot${API_KEY}/sendMessage?chat_id=${chatId}&text=${"Congrats Dear b! You registered on time ✅"}`);
         break; 
       case "c": 
-        c++;
-        fetch(`https://api.telegram.org/bot${API_KEY}/sendMessage?chat_id=${chatId}&text=${"Congrats Dear c! You registerd on time ✅"}`);
+        increment("c");
+        fetch(`https://api.telegram.org/bot${API_KEY}/sendMessage?chat_id=${chatId}&text=${"Congrats Dear c! You registered on time ✅"}`);
         break;
         case "/start":
           fetch(`https://api.telegram.org/bot${API_KEY}/sendMessage?chat_id=${chatId}&text=${"Welcome to my bot! Type /info for more information."}`);
