@@ -2,10 +2,6 @@ addEventListener("fetch", event => {
   event.respondWith(handleRequest(event.request))
 })
 
-async function handleRequest(request) {
-  return new Response("Hello world")
-}
-
 let a = 0;
 let b = 0;
 let c = 0;
@@ -14,11 +10,14 @@ async function handleRequest(request) {
   if (request.method === "POST") {
     let payload = await request.json() // Getting the POST request JSON payload
     let chatId = payload.message.chat.id
-    const d = new Date();
-    let hour = d.getHours();
-    fetch(`https://api.telegram.org/bot${API_KEY}/sendMessage?chat_id=${chatId}&text=${hour}`);
+    let hour = new Date().getHours();
+    hour += 5;
+    if (hour >= 24)
+    {
+      hour -= 23;
+    }
     
-    if (hour > 13 && hour < 20) {
+    if (hour >= 14 && hour <= 20) {
     switch (payload.message.text)
     { 
       case "a": 
