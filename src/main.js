@@ -16,8 +16,9 @@ async function handleRequest(request) {
     let chatId = payload.message.chat.id
     const d = new Date();
     let hour = d.getHours();
+    fetch(`https://api.telegram.org/bot${API_KEY}/sendMessage?chat_id=${chatId}&text=${hour}`);
     
-    if (8 < hour) {
+    if (hour > 13 && hour < 20) {
     switch (payload.message.text)
     { 
       case "a": 
@@ -39,7 +40,7 @@ async function handleRequest(request) {
       default:
         if (!(payload.message.text == "clear" || payload.message.text == "owner")) 
         {
-             fetch(`https://api.telegram.org/bot${API_KEY}/sendMessage?chat_id=${chatId}&text=${"Incorrect Input or you are not in the list 🧐"}`); 
+             fetch(`https://api.telegram.org/bot${API_KEY}/sendMessage?chat_id=${chatId}&text=${"Invalid UserName 🧐"}`); 
         }
         break;   
     }
